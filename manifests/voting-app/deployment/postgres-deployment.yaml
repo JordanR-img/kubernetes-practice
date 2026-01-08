@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment-controller
+  labels:
+    app: postgres
+    type: database-controller
+spec:
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app: postgres
+        type: database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+      type: database
+      

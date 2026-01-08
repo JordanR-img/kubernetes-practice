@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment-controller
+  labels:
+    app: worker
+    type: worker-controller
+spec:
+  template:
+    metadata:
+      name: worker
+      labels:
+        app: worker
+        type: worker
+    spec:
+      containers:
+        - name: worker
+          image: dockersamples/examplevotingapp_worker
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+      type: worker

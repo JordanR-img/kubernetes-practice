@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deployment-controller
+  labels:
+    app: voting-app
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: voting-app
+      labels:
+        app: voting-app
+        type: front-end
+    spec:
+      containers:
+        - name: kodekloud-voting-app
+          image: dockersamples/examplevotingapp_vote
+
+  replicas: 6
+  selector:
+    matchLabels:
+      app: voting-app
+      type: front-end
+      
