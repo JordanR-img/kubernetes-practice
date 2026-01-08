@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: vote
 spec:
-  type: NodePort
+# when in cloud, use LoadBalancer instead of NodePort
+  type: LoadBalancer
   ports:
     - name: vote-service
       targetPort: 80
